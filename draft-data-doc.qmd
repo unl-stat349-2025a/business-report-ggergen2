@@ -1,3 +1,19 @@
 ---
 title: "Draft: Data Documentation"
 ---
+
+```{r}
+df <- read.csv("gom_A5B7_t00mn01.csv")
+```
+
+The statistical mean is the average of all unflagged interpolated values at each standard depth level for each variable in each 1° square which contains at least one measurement for the given oceanographic variable. Uses longitude and latitude to tell location.
+
+Source: https://www.ncei.noaa.gov/access/gulf-of-mexico-climate/bin/gomregcl.pl
+
+Dauphin Island 30, 88
+
+```{r}
+df2 <- readxl::read_xlsx("2024_ESD.xlsx")
+```
+
+NERC collects, maintains, and annually publishes the Electricity Supply and Demand (ES&D) database, which includes 10-year projections for the North American bulk power system (BPS). Data are presented for each NERC Region (and subregions where applicable) for years 1990-2010. For years 2011 to present, data are presented for each NERC Assessment Area. Some information in the ES&D has been aggregated to protect sensitive information.
