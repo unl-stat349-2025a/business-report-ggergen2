@@ -3,7 +3,38 @@ title: "Draft: Data Documentation"
 ---
 
 ```{r}
-df <- read.csv("gom_A5B7_t00mn01.csv")
+library(readr)
+library(purrr)
+
+monthly_files <- list.files(pattern = "gom_A5B7_t\\d{2}mn01\\.csv")
+
+monthly_dfs <- map(monthly_files, ~ read_csv(.x, show_col_types = FALSE))
+
+monthly_dfs <- map(monthly_files, ~ read_csv(
+  .x,
+  col_names = c("Latitude", "Longitude", "Temp_C"),
+  skip = 2,
+  col_types = cols_only(
+    Latitude = col_double(),
+    Longitude = col_double(),
+    Temp_C = col_double()
+  )
+))
+
+dauphin_clean <- function(df, month_num) {
+  df %>%
+    filter(
+      between(Latitude, 29.5, 30.5),
+      between(Longitude, -88.5, -87.5)
+    ) %>%
+    mutate(
+      Temp_F = Temp_C * 9/5 + 32,
+      Above_85 = Temp_F > 85,
+      Month = month_num
+    )
+}
+
+monthly_cleaned <- map2_dfr(monthly_dfs, 1:12, dauphin_clean)
 ```
 
 The statistical mean is the average of all unflagged interpolated values at each standard depth level for each variable in each 1° square which contains at least one measurement for the given oceanographic variable. Uses longitude and latitude to tell location.
@@ -14,6 +45,10 @@ Dauphin Island 30, 88
 
 ```{r}
 df2 <- readxl::read_xlsx("2024_ESD.xlsx")
+
+elec_df <- df2 %>%
+  filter(`Report Year` == "2024" &
+         `Assessment Area` == "SERC-SE")
 ```
 
 NERC collects, maintains, and annually publishes the Electricity Supply and Demand (ES&D) database, which includes 10-year projections for the North American bulk power system (BPS). Data are presented for each NERC Region (and subregions where applicable) for years 1990-2010. For years 2011 to present, data are presented for each NERC Assessment Area. Some information in the ES&D has been aggregated to protect sensitive information.

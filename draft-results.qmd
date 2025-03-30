@@ -2,3 +2,55 @@
 title: "Draft: Results"
 ---
 
+Using Gulf Coast temperature datasets from the National Centers for Environmental Information, we found July, August, and potentially September to be the three months that give our situation trouble. The datasets were monthly records of the average temperature of the gulf from the years 2005-2017 across various depths. The locations were recorded using latitude and longitude which we filtered out to fit what would be most near to Dauphin Island The depth that we elected to look at was a depth of 0 feet assuming the plant pulls water from the surface. Now this data is not ideal since it only goes up to 2017 and is an average of the temperature for that entire month across a span of 12 years. Nonetheless, July had an average temperature of 86 degrees Fahrenheit, August is 86.3, and September is 84.3. Now, data was not able to be found for the past 7 years and we know that global ocean temperature has been rising. However, I could not find conclusive evidence that temperature in the past 7 years has rose enough to say September would be above 85 degrees Fahrenheit.
+
+```{r, warning=FALSE,message=FALSE}
+# |echo: false
+library(readr)
+library(purrr)
+
+monthly_files <- list.files(pattern = "gom_A5B7_t\\d{2}mn01\\.csv")
+
+monthly_dfs <- map(monthly_files, ~ read_csv(.x, show_col_types = FALSE))
+
+monthly_dfs <- map(monthly_files, ~ read_csv(
+  .x,
+  col_names = c("Latitude", "Longitude", "Temp_C"),
+  skip = 2,
+  col_types = cols_only(
+    Latitude = col_double(),
+    Longitude = col_double(),
+    Temp_C = col_double()
+  )
+))
+
+dauphin_clean <- function(df, month_num) {
+  df %>%
+    filter(
+      between(Latitude, 29.5, 30.5),
+      between(Longitude, -88.5, -87.5)
+    ) %>%
+    mutate(
+      Temp_F = Temp_C * 9/5 + 32,
+      Above_85 = Temp_F > 85,
+      Month = month_num
+    )
+}
+
+monthly_cleaned <- map2_dfr(monthly_dfs, 1:12, dauphin_clean)
+print(monthly_cleaned)
+```
+
+The other dataset used was from the North American Electric Reliability Corporation, which was much cleaner and easier to filter. The data was filtered get electrical data for the 2024 in the southeast United states region and the Southeast assessment area. Which yielded the table below:
+
+```{r,message=FALSE,warning=FALSE}
+#| echo: false
+df2 <- readxl::read_xlsx("2024_ESD.xlsx")
+
+elec_df <- df2 %>%
+  filter(`Report Year` == "2024" &
+         `Assessment Area` == "SERC-SE")
+print(elec_df)
+```
+
+Immediately we can see that July and August have the highest electrical usage which are the two months that sea temperature is above the threshold for full plant operation. From these numbers we can conclude that the plant is under significant risk over the next five years of underperforming during these months. 
