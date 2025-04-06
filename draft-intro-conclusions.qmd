@@ -4,7 +4,7 @@ title: "Draft: Intro/Conclusions"
 
 # Intro
 
-Many power plants rely on water for cooling the plant and keeping it stable. The issue with the power plant that is being assessed, located in Dauphin Island, Alabama, is that it uses water from the Gulf of Mexico. Now if a power plant uses the water to cool down the reactor then you would want that water to be as cold as possible right? When the plant being examined was built, it was assumed the temperature of the water extracted from the gulf would not exceed 85 degrees Fahrenheit because if it did the plant would have to operate at reduced capacity. With ocean temperatures rising it is necessary to find out if the plant can remain at capacity. Using ocean temperature and energy demand data this analysis looks into the risk of operating the plant at reduced capacity and when the energy demand from the plant is needed most.
+Many power plants rely on water for cooling the plant and keeping it stable. The issue with the power plant that is being assessed, located in Dauphin Island, Alabama, is that it uses water from the Gulf of Mexico. Now if a power plant uses the water to cool down the reactor then you would want that water to be as cold as possible right? When the plant being examined was built, it was assumed the temperature of the water extracted from the gulf would not exceed 85 degrees Fahrenheit because if it did the plant would have to operate at reduced capacity. With ocean temperatures rising it is necessary to find out if the plant can remain at capacity. Using ocean temperature and energy demand data this analysis looks into the risk of operating the plant at reduced capacity and when the energy from the plant is needed most.
 
 # Conclusion
 
