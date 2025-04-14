@@ -5,40 +5,66 @@ title: "Draft: Results"
 Using Gulf Coast temperature datasets from the National Centers for Environmental Information, we found July, August, and potentially September to be the three months that give our situation trouble. The datasets were monthly records of the average temperature of the gulf from the years 2005-2017 across various depths. The locations were recorded using latitude and longitude which we filtered out to fit what would be most near to Dauphin Island The depth that we elected to look at was a depth of 0 feet assuming the plant pulls water from the surface. Now this data is not ideal since it only goes up to 2017 and is an average of the temperature for that entire month across a span of 12 years. Nonetheless, July had an average temperature of 86 degrees Fahrenheit, August is 86.3, and September is 84.3. Now, data was not able to be found for the past 7 years and we know that global ocean temperature has been rising. However, I could not find conclusive evidence that temperature in the past 7 years has rose enough to say September would be above 85 degrees Fahrenheit.
 
 ```{r, warning=FALSE,message=FALSE}
-# |echo: false
+#| echo: false
 library(readr)
 library(purrr)
+library(tidyverse)
+library(dplyr)
 
-monthly_files <- list.files(pattern = "gom_A5B7_t\\d{2}mn01\\.csv")
+temp1 <- read.table("dpha1h2022.txt")
+temp2 <- read.table("dpha1h2023.txt")
+temp3 <- read.table("dpha1h2024.txt")
 
-monthly_dfs <- map(monthly_files, ~ read_csv(.x, show_col_types = FALSE))
+temp <- rbind(temp1, temp2, temp3)
 
-monthly_dfs <- map(monthly_files, ~ read_csv(
-  .x,
-  col_names = c("Latitude", "Longitude", "Temp_C"),
-  skip = 2,
-  col_types = cols_only(
-    Latitude = col_double(),
-    Longitude = col_double(),
-    Temp_C = col_double()
+temp_data <- temp %>%
+  select(V1, V2, V3, V15) %>%
+  rename(
+    year = V1,
+    month = V2,
+    day = V3,
+    temp = V15
+  ) %>%
+  filter(temp < 999) %>%
+  filter(year != 2022 | month != 4 | temp < 29) %>%
+  mutate(temp = temp*(9/5)+32) %>% 
+  mutate(date = make_date(year, month, day))
+
+monthly_avg <- temp_data %>%
+  group_by(year, month) %>%
+  summarise(avg_temp = mean(temp), .groups = "drop") %>%
+  mutate(
+    temp_flag   = if_else(avg_temp > 85, "Above 85°F", "Below 85°F"),
+    month_label = factor(month, levels = 1:12, labels = month.abb)
   )
-))
 
-dauphin_clean <- function(df, month_num) {
-  df %>%
-    filter(
-      between(Latitude, 29.5, 30.5),
-      between(Longitude, -88.5, -87.5)
-    ) %>%
-    mutate(
-      Temp_F = Temp_C * 9/5 + 32,
-      Above_85 = Temp_F > 85,
-      Month = month_num
-    )
-}
+p <- ggplot(monthly_avg, aes(x = month_label, y = avg_temp, fill = temp_flag)) +
+  geom_col() +
+  geom_hline(yintercept = 85, linetype = "dashed", color = "grey40") +
+  scale_fill_manual(values = c("Above 85°F" = "red", "Below 85°F" = "blue")) +
+  geom_text(
+    data = subset(monthly_avg, temp_flag == "Above 85°F"),
+    aes(label = month_label), 
+    vjust = -.25,
+    hjust = .25,
+    color = "black",
+    size = 3,
+    angle = 45
+  ) +
+  facet_wrap(~ year) +
+  labs(
+    title = "Monthly Average Temperature by Year with 85°F Threshold",
+    x = "Month",
+    y = "Average Temperature (°F)"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x  = element_blank(),
+    legend.title = element_blank()
+  )
 
-monthly_cleaned <- map2_dfr(monthly_dfs, 1:12, dauphin_clean)
-print(monthly_cleaned)
+print(p)
+
 ```
 
 The other dataset used was from the North American Electric Reliability Corporation, which was much cleaner and easier to filter. The data was filtered get electrical data for the 2024 in the southeast United states region and the Southeast assessment area. Which yielded the table below:
@@ -51,6 +77,34 @@ elec_df <- df2 %>%
   filter(`Report Year` == "2024" &
          `Assessment Area` == "SERC-SE")
 print(elec_df)
+
+elec_long <- elec_df %>%
+  pivot_longer(
+    cols = Jan:Dec,
+    names_to = "Month",
+    values_to = "Energy"
+  ) %>%
+  filter(Description == "Reporting Year Forecast - Net Energy For Load")
+
+elec_long$Month <- factor(elec_long$Month, 
+                            levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                                       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"))
+
+p <- ggplot(elec_long, aes(x = Month, y = Energy, group = Description, colour = Description)) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  labs(
+    title = "Net Energy for Load by Month (2024)",
+    subtitle = "Energy values in GWh",
+    x = "Month",
+    y = "Energy (GWh)"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 0, hjust = 0.5)
+  )
+
+print(p)
 ```
 
 Immediately we can see that July and August have the highest electrical usage which are the two months that sea temperature is above the threshold for full plant operation. From these numbers we can conclude that the plant is under significant risk over the next five years of underperforming during these months. 

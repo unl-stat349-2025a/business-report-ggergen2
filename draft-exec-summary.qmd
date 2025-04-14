@@ -1,3 +1,115 @@
 ---
 title: "Draft: Executive Summary"
 ---
+
+
+The analysis reviewed two datasets to evaluate operational risks for the plant over the next five years, given that the plant can only run at full capacity if the Gulf water used for cooling remains below 85°F.
+
+# Temperature Analysis
+
+According to data from the National Data Buoy Center for the area around Dauphin Island, the average water temperatures in July and August have exceeded 85°F over the past three years, with September also surpassing this threshold in 2023. Also of note, June 2024 recorded an average just below 85°F. Keep in mind that these are monthly averages, meaning that even if a month's average is below the threshold, there could still be individual days when the temperature exceeds 85°F. On those days, the plant must operate at a reduced capacity, supplying less electricity to consumers.
+
+```{r, warning=FALSE,message=FALSE}
+#| echo: false
+library(readr)
+library(purrr)
+library(tidyverse)
+library(dplyr)
+
+temp1 <- read.table("dpha1h2022.txt")
+temp2 <- read.table("dpha1h2023.txt")
+temp3 <- read.table("dpha1h2024.txt")
+
+temp <- rbind(temp1, temp2, temp3)
+
+temp_data <- temp %>%
+  select(V1, V2, V3, V15) %>%
+  rename(
+    year = V1,
+    month = V2,
+    day = V3,
+    temp = V15
+  ) %>%
+  filter(temp < 999) %>%
+  filter(year != 2022 | month != 4 | temp < 29) %>%
+  mutate(temp = temp*(9/5)+32) %>% 
+  mutate(date = make_date(year, month, day))
+
+monthly_avg <- temp_data %>%
+  group_by(year, month) %>%
+  summarise(avg_temp = mean(temp), .groups = "drop") %>%
+  mutate(
+    temp_flag   = if_else(avg_temp > 85, "Above 85°F", "Below 85°F"),
+    month_label = factor(month, levels = 1:12, labels = month.abb)
+  )
+
+p <- ggplot(monthly_avg, aes(x = month_label, y = avg_temp, fill = temp_flag)) +
+  geom_col() +
+  geom_hline(yintercept = 85, linetype = "dashed", color = "grey40") +
+  scale_fill_manual(values = c("Above 85°F" = "red", "Below 85°F" = "blue")) +
+  geom_text(
+    data = subset(monthly_avg, temp_flag == "Above 85°F"),
+    aes(label = month_label), 
+    vjust = -.25,
+    hjust = .25,
+    color = "black",
+    size = 3,
+    angle = 45
+  ) +
+  facet_wrap(~ year) +
+  labs(
+    title = "Monthly Average Temperature by Year with 85°F Threshold",
+    x = "Month",
+    y = "Average Temperature (°F)"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x  = element_blank(),
+    legend.title = element_blank()
+  )
+
+print(p)
+```
+
+# Electrical Usage Correlation
+Data from the North American Electric Reliability Corporation for 2024 in the Southeast US (SERC-SE area) reveals that electrical consumption peaks in July and August—the same period when sea surface temperatures are above the threshold required for full plant efficiency. This shows that the risk is greatest during these two months.
+
+```{r,message=FALSE,warning=FALSE}
+#| echo: false
+df2 <- readxl::read_xlsx("2024_ESD.xlsx")
+
+elec_df <- df2 %>%
+  filter(`Report Year` == "2024" &
+         `Assessment Area` == "SERC-SE")
+
+elec_long <- elec_df %>%
+  pivot_longer(
+    cols = Jan:Dec,
+    names_to = "Month",
+    values_to = "Energy"
+  ) %>%
+  filter(Description == "Reporting Year Forecast - Net Energy For Load")
+
+elec_long$Month <- factor(elec_long$Month, 
+                            levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                                       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"))
+
+p <- ggplot(elec_long, aes(x = Month, y = Energy, group = Description, colour = Description)) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  labs(
+    title = "Net Energy for Load by Month (2024)",
+    subtitle = "Energy values in GWh",
+    x = "Month",
+    y = "Energy (GWh)"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 0, hjust = 0.5)
+  )
+
+print(p)
+```
+
+# Conclusion
+The combined evidence from both temperature and electrical demand data indicates that the plant is at significant risk of underperformance during the peak summer months of July and August. A solution that can get the plant operating at full capacity during these months is vital. Also, efforts to reduce electrical usage or divert some of the demand to other plants in the area could prove effective. 

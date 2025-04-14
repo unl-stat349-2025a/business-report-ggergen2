@@ -33,8 +33,6 @@ dauphin_clean <- function(df, month_num) {
       Month = month_num
     )
 }
-
-monthly_cleaned <- map2_dfr(monthly_dfs, 1:12, dauphin_clean)
 ```
 
 The statistical mean is the average of all unflagged interpolated values at each standard depth level for each variable in each 1° square which contains at least one measurement for the given oceanographic variable. Uses longitude and latitude to tell location.
@@ -45,10 +43,6 @@ Dauphin Island 30, 88
 
 ```{r}
 df2 <- readxl::read_xlsx("2024_ESD.xlsx")
-
-elec_df <- df2 %>%
-  filter(`Report Year` == "2024" &
-         `Assessment Area` == "SERC-SE")
 ```
 
 NERC collects, maintains, and annually publishes the Electricity Supply and Demand (ES&D) database, which includes 10-year projections for the North American bulk power system (BPS). Data are presented for each NERC Region (and subregions where applicable) for years 1990-2010. For years 2011 to present, data are presented for each NERC Assessment Area. Some information in the ES&D has been aggregated to protect sensitive information.
