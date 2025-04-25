@@ -4,7 +4,7 @@
 
 The power plant located at Dauphin Island, Alabama, relies on Gulf of Mexico water to cool its equipment, with an operational limit set at water temperatures below 85°F. Rising ocean temperatures pose significant economic and operational risks, particularly during peak electricity demand in summer.
 
-Historical analysis (2022–2024) of Gulf water temperatures indicates consistent exceedances of the 85°F threshold in July and August, with occasional exceedances in June and September. Forecasted electricity demand for 2024 aligns closely with these periods of elevated temperatures, exacerbating the risk of reduced operational capacity precisely when energy demand peaks.
+Historical analysis (2022–2024) of Gulf water temperatures indicates consistent exceedances of the 85°F threshold in July and August, with occasional exceedances in June and September. Forecasted electricity demand for 2024 aligns closely with these periods of elevated temperatures. Thus, increasing the risk of reduced operational capacity precisely when energy demand peaks.
 
 Key findings include:
 

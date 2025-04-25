@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Power plants generate a lot of heat and therefor need to cooled down. Many power plants rely on water to cool the equipment and maintain stable operations. However, this can have significant impacts environmentally and economically (@bergmann2024). The power plant examined in this report is located in Dauphin Island, Alabama, and uses water from the Gulf of Mexico. At the time the plant was constructed, it was assumed the Gulf water temperature would remain below 85°F; temperatures exceeding this threshold would require the plant to run at reduced capacity. With ocean temperatures rising, it's essential to evaluate whether the plant can operate at full capacity throughout the year. This report analyzes historical ocean temperature data alongside electricity demand forecasts to assess operational risks.
+Power plants generate a lot of heat and therefor need to cooled down. Many power plants rely on water to cool the equipment and maintain stable operations. However, this can have significant impacts environmentally and economically (@Bergmann2024). The power plant examined in this report is located in Dauphin Island, Alabama, and uses water from the Gulf of Mexico. At the time the plant was constructed, it was assumed the Gulf water temperature would remain below 85°F; temperatures exceeding this threshold would require the plant to run at reduced capacity. With ocean temperatures rising, it's essential to evaluate whether the plant can operate at full capacity throughout the year. This report analyzes historical ocean temperature data alongside electricity demand forecasts to assess operational risks.
 
 Operating below full capacity poses economic and reliability concerns, especially during periods of peak electricity demand, potentially leading to shortages or increased costs.
 
@@ -10,21 +10,21 @@ Operating below full capacity poses economic and reliability concerns, especiall
 
 ### Data Sources
 
--   **Sea-surface Temperature:**\
+-   **Sea-surface Temperature (@NERC):** \
     Hourly water temperature readings were collected from a buoy near Dauphin Island for the period January 2022 through December 2024.
 
--   **Electricity Usage Forecasts:**\
+-   **Electricity Usage Forecasts (@NBCD-h) :**\
     Forecasts of “Net Energy For Load” for 2024 were obtained from the North American Electric Reliability Corporation, focusing on the Southeastern U.S. (SERC-SE region).
 
 ### Temperature Data Preparation
 
 1.  **Collecting and Combining Data**
 
-    -   We loaded three separate text files (one per year: 2022, 2023, 2024) and row-bound them into a single dataset.
+    -   Loaded three separate text files (one per year: 2022, 2023, 2024) and row-bound them into a single dataset.
 
 2.  **Cleaning the Data**
 
-    -   We retained only the year, month, day and raw temperature columns.\
+    -   Retained only the year, month, day and raw temperature columns.\
     -   All placeholder values (temperatures ≥ 999) were removed, and April 2022 readings above 28.5 °C (instrument glitch) were excluded.
 
 3.  **Converting Temperature and Formatting Dates**
@@ -34,10 +34,10 @@ Operating below full capacity poses economic and reliability concerns, especiall
 
 ### Monthly Temperature Averages
 
--   We calculated the average temperature for each combination of year and month.\
+-   Calculated the average temperature for each combination of year and month.\
 -   Each month was flagged as “Above 85 °F” or “Below 85 °F” for easy highlighting.\
 -   A three-letter month label (Jan, Feb, …) was assigned for plotting.\
--   We then averaged those monthly values across all three years to create a long-term baseline for each calendar month.
+-   Then averaged those monthly values across all three years to create a long-term baseline for each calendar month.
 
 ### Electricity Usage Data Preparation
 
