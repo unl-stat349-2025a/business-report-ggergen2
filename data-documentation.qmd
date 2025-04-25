@@ -1,0 +1,33 @@
+## Data Documentation
+
+### Data Sources
+
+-   **Sea-Surface Temperature Data:**
+
+    -   **Source:** National Data Buoy Center (Dauphin Island buoy) (@ndbc-h)
+
+    -   **Period Covered:** January 2022 through December 2024
+
+    -   **Description:** Hourly water temperature measurements
+
+    -   **Variables Used:**
+
+        -   Year (V1)
+
+        -   Month (V2)
+
+        -   Day (V3)
+
+        -   Temperature (V15)
+
+-   **Electricity Usage Forecast Data:**
+
+    -   **Source:** North American Electric Reliability Corporation (NERC) (@NERC)
+
+    -   **Document:** 2024 Electricity Supply and Demand (ES&D) Forecast
+
+    -   **Focus Region:** Southeastern U.S. (SERC-SE)
+
+    -   **Variables Used:**
+
+        -   Monthly Net Energy For Load (GWh)

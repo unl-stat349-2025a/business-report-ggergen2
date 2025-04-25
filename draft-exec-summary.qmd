@@ -43,32 +43,35 @@ monthly_avg <- temp_data %>%
     month_label = factor(month, levels = 1:12, labels = month.abb)
   )
 
-p <- ggplot(monthly_avg, aes(x = month_label, y = avg_temp, fill = temp_flag)) +
-  geom_col() +
-  geom_hline(yintercept = 85, linetype = "dashed", color = "grey40") +
-  scale_fill_manual(values = c("Above 85°F" = "red", "Below 85°F" = "blue")) +
+p_line_emph <- ggplot(monthly_avg, aes(month_label, avg_temp, group = 1)) +
+  geom_line(color = "blue", size = 1) +
+  geom_point(color = "blue", size = 2) +
+  # label only months above 85°F
   geom_text(
-    data = subset(monthly_avg, temp_flag == "Above 85°F"),
-    aes(label = month_label), 
-    vjust = -.25,
-    hjust = .25,
-    color = "black",
-    size = 3,
-    angle = 45
+    data = filter(monthly_avg, avg_temp > 85),
+    aes(label = month_label),
+    vjust   = -1,            # nudge above the point
+    color   = "red",
+    fontface= "bold",
+    size    = 2.5
+  ) +
+  geom_hline(
+    yintercept = 85,
+    linetype    = "dashed",
+    color       = "grey40"
   ) +
   facet_wrap(~ year) +
   labs(
     title = "Monthly Average Temperature by Year with 85°F Threshold",
-    x = "Month",
-    y = "Average Temperature (°F)"
+    x     = "Month",
+    y     = "Average Temperature (°F)"
   ) +
   theme_minimal() +
   theme(
-    axis.text.x  = element_blank(),
-    legend.title = element_blank()
+    axis.text.x = element_text(angle = 45, hjust = 1)  # show all month labels
   )
 
-print(p)
+print(p_line_emph)
 ```
 
 # Electrical Usage Correlation
@@ -112,4 +115,81 @@ print(p)
 ```
 
 # Conclusion
-The combined evidence from both temperature and electrical demand data indicates that the plant is at significant risk of underperformance during the peak summer months of July and August. A solution that can get the plant operating at full capacity during these months is vital. Also, efforts to reduce electrical usage or divert some of the demand to other plants in the area could prove effective. 
+The combined evidence from both temperature and electrical demand data indicates that the plant is at significant risk of underperformance during the peak summer months of July and August. A solution that can get the plant operating at full capacity during these months is vital. Also, efforts to reduce electrical usage or divert some of the demand to other plants in the area could prove effective.
+
+
+```{r,message=FALSE,warning=FALSE}
+#| echo: false
+
+monthly_avg_all <- monthly_avg %>%
+  group_by(month) %>%
+  summarise(avg_temp = mean(avg_temp), .groups="drop") %>%
+  mutate(
+    Month = factor(month.abb[month], levels = month.abb)
+  )
+
+fac <- max(elec_long$Energy, na.rm = TRUE) / max(monthly_avg_all$avg_temp, na.rm = TRUE)
+
+p_combined <- ggplot() +
+  geom_line(
+    data    = elec_long,
+    aes(x = Month, y = Energy, group = Description, colour = Description),
+    size    = 1
+  ) +
+  geom_point(
+    data    = elec_long,
+    aes(x = Month, y = Energy, group = Description, colour = Description),
+    size    = 2
+  ) +
+  geom_line(
+    data    = monthly_avg_all,
+    aes(x = Month, y = avg_temp * fac, group = 1),
+    colour = "black",
+    linetype = "dashed",
+    size     = 1
+  ) +
+  geom_point(
+    data    = monthly_avg_all,
+    aes(x = Month, y = avg_temp * fac),
+    colour = "black",
+    size    = 2
+  ) +
+  scale_y_continuous(
+    name    = "Energy (GWh)",
+    sec.axis = sec_axis(
+      ~ . / fac,
+      name = "Avg Temperature (°F)"
+    )
+  ) +
+  labs(
+    title    = "Monthly Net Energy & Average Temperature",
+    subtitle = "Energy (GWh) by Description (coloured) and overall Avg Temp (black dashed)",
+    x        = "Month"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x    = element_text(angle = 45, hjust = 1),
+    legend.title   = element_blank()
+  )
+
+p_combined_thresh <- p_combined +
+  geom_hline(
+    yintercept = 85 * fac,     
+    linetype    = "dashed",
+    color       = "grey40",
+    size        = 0.8
+  ) +
+  annotate(
+    "text",
+    x     = Inf,               
+    y     = 85 * fac,
+    label = "85°F threshold",
+    hjust = 1.1,
+    vjust = -0.5,
+    color = "grey40",
+    size  = 3
+  )
+
+print(p_combined_thresh)
+
+```

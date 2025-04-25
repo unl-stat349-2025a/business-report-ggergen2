@@ -1,0 +1,145 @@
+# Executive Summary
+
+## Executive Summary
+
+The power plant located at Dauphin Island, Alabama, relies on Gulf of Mexico water to cool its equipment, with an operational limit set at water temperatures below 85°F. Rising ocean temperatures pose significant economic and operational risks, particularly during peak electricity demand in summer.
+
+Historical analysis (2022–2024) of Gulf water temperatures indicates consistent exceedances of the 85°F threshold in July and August, with occasional exceedances in June and September. Forecasted electricity demand for 2024 aligns closely with these periods of elevated temperatures, exacerbating the risk of reduced operational capacity precisely when energy demand peaks.
+
+Key findings include:
+
+-   Average monthly temperatures in peak summer regularly exceed the plant’s cooling threshold.
+-   Peak energy demand occurs simultaneously with these high-temperature months, increasing the potential for shortages and higher operational costs.
+
+### Important Visualizations and Tables
+
+#### Monthly Average Water Temperatures (°F) at Dauphin Island (2022–2024)
+
+```{r, include=FALSE}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Load libraries
+library(readr)
+library(purrr)
+library(tidyverse)
+library(dplyr)
+library(lubridate)
+library(readxl)
+library(knitr)
+library(ggplot2)
+library(tidyr)
+
+temp1 <- read.table("dpha1h2022.txt")
+temp2 <- read.table("dpha1h2023.txt")
+temp3 <- read.table("dpha1h2024.txt")
+temp <- rbind(temp1, temp2, temp3)
+
+temp_data <- temp %>%
+  select(V1, V2, V3, V15) %>%
+  rename(
+    year = V1,
+    month = V2,
+    day = V3,
+    temp = V15
+  ) %>%
+  filter(temp < 999) %>%
+  filter(!(year == 2022 & month == 4 & temp > 28.5)) %>%
+  mutate(temp = temp * (9/5) + 32) %>%
+  mutate(date = make_date(year, month, day))
+
+monthly_avg <- temp_data %>%
+  group_by(year, month) %>%
+  summarise(avg_temp = mean(temp, na.rm = TRUE), .groups = "drop") %>%
+  mutate(
+    temp_flag   = if_else(avg_temp > 85, "Above 85°F", "Below 85°F"),
+    month_label = factor(month, levels = 1:12, labels = month.abb)
+  )
+
+df2 <- readxl::read_xlsx("2024_ESD.xlsx")
+elec_df <- df2 %>%
+  filter(`Report Year` == "2024" & `Assessment Area` == "SERC-SE")
+
+elec_long <- elec_df %>%
+  pivot_longer(cols = Jan:Dec, names_to = "Month", values_to = "Energy") %>%
+  filter(Description == "Reporting Year Forecast - Net Energy For Load") %>%
+  mutate(Month = factor(Month, levels = month.abb))
+
+monthly_avg_all <- monthly_avg %>%
+  group_by(month) %>%
+  summarise(avg_temp = mean(avg_temp, na.rm = TRUE), .groups="drop") %>%
+  mutate(Month = factor(month.abb[month], levels = month.abb))
+
+fac <- max(elec_long$Energy, na.rm = TRUE) / max(monthly_avg_all$avg_temp, na.rm = TRUE)
+```
+
+The following table presents the average monthly water temperatures for each year between 2022 and 2024. It highlights periods where the operational threshold was breached, offering a clear view of seasonal patterns and year-to-year variability.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+temp_summary_table <- monthly_avg %>%
+  select(year, month_label, avg_temp) %>%
+  mutate(avg_temp = round(avg_temp, 1)) %>%
+  pivot_wider(names_from = year, values_from = avg_temp) %>%
+  arrange(match(month_label, month.abb))
+
+knitr::kable(temp_summary_table,
+             col.names = c("Month", "2022 Avg Temp (°F)", "2023 Avg Temp (°F)", "2024 Avg Temp (°F)"),
+             align = 'c')
+```
+
+#### Forecasted Net Energy For Load (GWh) by Month for SERC-SE (2024)
+
+This table summarizes the monthly forecasted electricity demand for the SERC-SE region in 2024, showing the seasonal rise in energy needs that aligns with periods of higher temperatures.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+elec_summary_table <- elec_long %>%
+  select(Month, Energy) %>%
+  mutate(Energy = round(Energy, 0))
+
+knitr::kable(elec_summary_table,
+             col.names = c("Month", "Energy (GWh)"),
+             align = 'c')
+```
+
+#### Combined Temperature and Energy Usage Graph
+
+The chart below overlays the forecasted 2024 energy usage with the average water temperatures (2022–2024) to reveal a concerning trend: periods of highest energy demand correspond closely with months where water temperatures exceed the 85°F operational limit.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+ggplot() +
+  geom_line(data = elec_long, aes(x = Month, y = Energy, group = 1),
+            colour = "dodgerblue", size = 1) +
+  geom_point(data = elec_long, aes(x = Month, y = Energy),
+             colour = "dodgerblue", size = 2) +
+  geom_line(data = monthly_avg_all, aes(x = Month, y = avg_temp * fac, group = 2),
+            colour = "black", linetype = "dashed", size = 1) +
+  geom_point(data = monthly_avg_all, aes(x = Month, y = avg_temp * fac),
+             colour = "black", size = 2) +
+  scale_y_continuous(
+    name    = "Forecasted Energy (GWh)",
+    sec.axis = sec_axis(~ . / fac, name = "Average Temperature (°F)")
+  ) +
+  geom_hline(yintercept = 85 * fac, linetype = "dashed", color = "grey40", size = 0.8) +
+  annotate("text", x = Inf, y = 85 * fac, label = "85°F threshold",
+           hjust = 1.1, vjust = -0.5, color = "grey40", size = 3) +
+  labs(x = "Month") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "none")
+```
+
+To mitigate these risks, we recommend:
+
+-   Evaluating alternative cooling methods to ensure operational stability.
+-   Investing in additional energy storage or backup generation capabilities.
+-   Performing detailed economic and predictive analyses to inform strategic planning under various climate projections.
