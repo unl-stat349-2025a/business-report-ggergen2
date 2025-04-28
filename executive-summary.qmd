@@ -74,7 +74,7 @@ monthly_avg_all <- monthly_avg %>%
 fac <- max(elec_long$Energy, na.rm = TRUE) / max(monthly_avg_all$avg_temp, na.rm = TRUE)
 ```
 
-The following table presents the average monthly water temperatures for each year between 2022 and 2024. It highlights periods where the operational threshold was breached, offering a clear view of seasonal patterns and year-to-year variability.
+The following table presents the average monthly water temperatures for each year between 2022 and 2024.
 
 ```{r}
 #| echo: false

@@ -10,7 +10,7 @@ Operating below full capacity poses economic and reliability concerns, especiall
 
 ### Data Sources
 
--   **Sea-surface Temperature (@NERC):** \
+-   **Sea-surface Temperature (@NERC):**\
     Hourly water temperature readings were collected from a buoy near Dauphin Island for the period January 2022 through December 2024.
 
 -   **Electricity Usage Forecasts (@NBCD-h) :**\

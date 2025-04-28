@@ -20,25 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
 </style>
 
 
@@ -237,7 +218,7 @@ div.csl-indent {
 
 <section id="introduction" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">2.1</span> Introduction</h2>
-<p>Power plants generate a lot of heat and therefor need to cooled down. Many power plants rely on water to cool the equipment and maintain stable operations. However, this can have significant impacts environmentally and economically (<span class="citation" data-cites="bergmann2024">bergmann (<a href="references.html#ref-bergmann2024" role="doc-biblioref">2024</a>)</span>). The power plant examined in this report is located in Dauphin Island, Alabama, and uses water from the Gulf of Mexico. At the time the plant was constructed, it was assumed the Gulf water temperature would remain below 85°F; temperatures exceeding this threshold would require the plant to run at reduced capacity. With ocean temperatures rising, it’s essential to evaluate whether the plant can operate at full capacity throughout the year. This report analyzes historical ocean temperature data alongside electricity demand forecasts to assess operational risks.</p>
+<p>Power plants generate a lot of heat and therefor need to cooled down. Many power plants rely on water to cool the equipment and maintain stable operations. However, this can have significant impacts environmentally and economically (<span class="citation" data-cites="Bergmann2024">(<a href="references.html#ref-Bergmann2024" role="doc-biblioref"><strong>Bergmann2024?</strong></a>)</span>). The power plant examined in this report is located in Dauphin Island, Alabama, and uses water from the Gulf of Mexico. At the time the plant was constructed, it was assumed the Gulf water temperature would remain below 85°F; temperatures exceeding this threshold would require the plant to run at reduced capacity. With ocean temperatures rising, it’s essential to evaluate whether the plant can operate at full capacity throughout the year. This report analyzes historical ocean temperature data alongside electricity demand forecasts to assess operational risks.</p>
 <p>Operating below full capacity poses economic and reliability concerns, especially during periods of peak electricity demand, potentially leading to shortages or increased costs.</p>
 </section>
 <section id="methods" class="level2" data-number="2.2">
@@ -245,9 +226,9 @@ div.csl-indent {
 <section id="data-sources" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="data-sources"><span class="header-section-number">2.2.1</span> Data Sources</h3>
 <ul>
-<li><p><strong>Sea-surface Temperature:</strong><br>
+<li><p><strong>Sea-surface Temperature (<span class="citation" data-cites="NERC">(<a href="references.html#ref-NERC" role="doc-biblioref"><strong>NERC?</strong></a>)</span>):</strong><br>
 Hourly water temperature readings were collected from a buoy near Dauphin Island for the period January 2022 through December 2024.</p></li>
-<li><p><strong>Electricity Usage Forecasts:</strong><br>
+<li><p><strong>Electricity Usage Forecasts (<span class="citation" data-cites="NBCD-h">(<a href="references.html#ref-NBCD-h" role="doc-biblioref"><strong>NBCD-h?</strong></a>)</span>) :</strong><br>
 Forecasts of “Net Energy For Load” for 2024 were obtained from the North American Electric Reliability Corporation, focusing on the Southeastern U.S. (SERC-SE region).</p></li>
 </ul>
 </section>
@@ -256,11 +237,11 @@ Forecasts of “Net Energy For Load” for 2024 were obtained from the North Ame
 <ol type="1">
 <li><p><strong>Collecting and Combining Data</strong></p>
 <ul>
-<li>We loaded three separate text files (one per year: 2022, 2023, 2024) and row-bound them into a single dataset.</li>
+<li>Loaded three separate text files (one per year: 2022, 2023, 2024) and row-bound them into a single dataset.</li>
 </ul></li>
 <li><p><strong>Cleaning the Data</strong></p>
 <ul>
-<li>We retained only the year, month, day and raw temperature columns.<br>
+<li>Retained only the year, month, day and raw temperature columns.<br>
 </li>
 <li>All placeholder values (temperatures ≥ 999) were removed, and April 2022 readings above 28.5 °C (instrument glitch) were excluded.</li>
 </ul></li>
@@ -275,13 +256,13 @@ Forecasts of “Net Energy For Load” for 2024 were obtained from the North Ame
 <section id="monthly-temperature-averages" class="level3" data-number="2.2.3">
 <h3 data-number="2.2.3" class="anchored" data-anchor-id="monthly-temperature-averages"><span class="header-section-number">2.2.3</span> Monthly Temperature Averages</h3>
 <ul>
-<li>We calculated the average temperature for each combination of year and month.<br>
+<li>Calculated the average temperature for each combination of year and month.<br>
 </li>
 <li>Each month was flagged as “Above 85 °F” or “Below 85 °F” for easy highlighting.<br>
 </li>
 <li>A three-letter month label (Jan, Feb, …) was assigned for plotting.<br>
 </li>
-<li>We then averaged those monthly values across all three years to create a long-term baseline for each calendar month.</li>
+<li>Then averaged those monthly values across all three years to create a long-term baseline for each calendar month.</li>
 </ul>
 </section>
 <section id="electricity-usage-data-preparation" class="level3" data-number="2.2.4">
@@ -598,11 +579,6 @@ Forecasts of “Net Energy For Load” for 2024 were obtained from the North Ame
 </ul>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
-<div id="ref-bergmann2024" class="csl-entry" role="doc-biblioentry">
-bergmann. 2024. <span>“How It Works: Water for Power Plant Cooling.”</span> <a href="https://www.starcoolingtowers.com/how-it-works-water-for-power-plant-cooling/">https://www.starcoolingtowers.com/how-it-works-water-for-power-plant-cooling/</a>.
-</div>
-</div>
 </section>
 </section>
 
