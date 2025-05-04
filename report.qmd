@@ -2,65 +2,41 @@
 
 ## Introduction
 
-Power plants generate a lot of heat and therefor need to cooled down. Many power plants rely on water to cool the equipment and maintain stable operations. However, this can have significant impacts environmentally and economically (@Bergmann2024). The power plant examined in this report is located in Dauphin Island, Alabama, and uses water from the Gulf of Mexico. At the time the plant was constructed, it was assumed the Gulf water temperature would remain below 85°F; temperatures exceeding this threshold would require the plant to run at reduced capacity. With ocean temperatures rising, it's essential to evaluate whether the plant can operate at full capacity throughout the year. This report analyzes historical ocean temperature data alongside electricity demand forecasts to assess operational risks.
+Over the past few decades, the demand for reliable electricity has increased steadily, and that trend shows no signs of slowing down. At the same time, global temperatures are rising, which puts extra pressure on power plants—especially those that use water to cool their equipment. Without effective cooling, turbines can overheat, efficiency drops, and unplanned shutdowns become more likely [@bergmann2024]. These issues can lead to higher operating costs and potential power shortages during peak demand.
 
-Operating below full capacity poses economic and reliability concerns, especially during periods of peak electricity demand, potentially leading to shortages or increased costs.
+This report examines a mid‐sized power plant on Dauphin Island, Alabama, where water from the Gulf of Mexico is drawn. When the plant was built, designers assumed intake water would stay below 85 °F year‐round. Recent data show that sea‐surface temperatures there occasionally exceed 85 °F—the level engineers originally considered the safe upper limit for cooling intake water. When temperatures climb above this threshold, the plant must scale back capacity to avoid overheating, which can reduce revenue and compromise grid reliability. This analysis aims to assess the operational risk of the plant having to lower production during high ocean temperature periods.
 
 ## Methods
 
 ### Data Sources
 
--   **Sea-surface Temperature (@NERC):**\
-    Hourly water temperature readings were collected from a buoy near Dauphin Island for the period January 2022 through December 2024.
-
--   **Electricity Usage Forecasts (@NBCD-h) :**\
-    Forecasts of “Net Energy For Load” for 2024 were obtained from the North American Electric Reliability Corporation, focusing on the Southeastern U.S. (SERC-SE region).
+Two main datasets were used in this analysis. The first dataset consisted of hourly water temperature readings collected from a buoy located near Dauphin Island, Alabama. These temperature data covered the period from January 2022 through December 2024 and were provided by the National Data Buoy Center [@ndbc-h]. The second dataset was an electricity usage forecast for the year 2024, specifically for the Southeastern U.S. (SERC-SE region), focusing on the "Net Energy For Load," provided by the North American Electric Reliability Corporation [@electric] .
 
 ### Temperature Data Preparation
 
-1.  **Collecting and Combining Data**
+Three separate datasets for temperature, each corresponding to one year (2022, 2023, 2024), were combined into a single dataset. After combining, the dataset was cleaned to retain only relevant information, such as year, month, day, and temperature measurements. Incorrect readings, including placeholder values (temperatures equal to or above 999) and unusually high readings from April 2022 (temperatures above 28.5 °C), were removed.
 
-    -   Loaded three separate text files (one per year: 2022, 2023, 2024) and row-bound them into a single dataset.
+After cleaning, temperature values were converted from Celsius to Fahrenheit, matching the plant's operational standards. A new date column was also created using a standardized "year-month-day" format for ease of analysis.
 
-2.  **Cleaning the Data**
+Monthly average temperatures were then calculated by grouping daily temperature data. Each month was labeled as either "Above 85 °F" or "Below 85 °F" based on whether the average exceeded the critical threshold of 85 °F. Finally, a long-term average was computed by averaging monthly values across the entire three-year span.
 
-    -   Retained only the year, month, day and raw temperature columns.\
-    -   All placeholder values (temperatures ≥ 999) were removed, and April 2022 readings above 28.5 °C (instrument glitch) were excluded.
-
-3.  **Converting Temperature and Formatting Dates**
-
-    -   Temperatures were converted from Celsius to Fahrenheit.\
-    -   A proper `date` column was created in “year-month-day” format.
-
-### Monthly Temperature Averages
-
--   Calculated the average temperature for each combination of year and month.\
--   Each month was flagged as “Above 85 °F” or “Below 85 °F” for easy highlighting.\
--   A three-letter month label (Jan, Feb, …) was assigned for plotting.\
--   Then averaged those monthly values across all three years to create a long-term baseline for each calendar month.
+A linear regression model was then created using monthly average temperatures to predict future temperatures, extending the dataset five years beyond the observed period.
 
 ### Electricity Usage Data Preparation
 
-1.  **Loading and Filtering Data**
+Electricity forecast data for 2024 was processed separately. The data was initially loaded from a spreadsheet and filtered to include only entries for the SERC-SE region and the "Reporting Year Forecast – Net Energy For Load."
 
-    -   The 2024 forecast spreadsheet was read in, then filtered to only include the SERC-SE region and the “Reporting Year Forecast – Net Energy For Load” series.
+The data initially contained monthly columns for each month from January to December. These monthly columns were reshaped into a long-form dataset, creating individual rows for each month. Energy consumption values were converted to numeric format, and months were organized chronologically from January through December for clearer analysis.
 
-2.  **Reshaping Data**
+### Combined Data Visualization
 
-    -   The twelve monthly columns (Jan–Dec) were pivoted into long form with one row per month.\
-    -   Energy values were converted to numeric and the `Month` column was ordered from January through December.
-
-### Combined‐Plot Calculations
-
--   To overlay temperature and energy on the same chart, we computed a scaling factor by dividing the maximum 2024 energy forecast by the maximum three-year average temperature. This ensured both series share a sensible dual-axis scale.
+To visualize the relationship between water temperatures and electricity usage effectively, the data required scaling. A scaling factor was calculated by dividing the maximum forecasted energy value for 2024 by the highest average temperature recorded across the three years. This scaling enabled clear and accurate plotting of both temperature and energy data on a single graph.
 
 ## Results
 
-### Combined Analysis and Visualization
+### Temperature Analysis
 
--   Average monthly temperatures across all years were calculated to identify general trends.
-
--   Electricity usage and temperature data were visualized together to assess potential relationships around the 85°F threshold.
+Analysis of water temperature data from the Dauphin Island buoy (2022–2024) reveals clear seasonal patterns, with temperatures frequently surpassing the critical threshold of 85 °F during the peak summer months.
 
 ```{r, include=FALSE}
 #| echo: false
@@ -121,70 +97,98 @@ monthly_avg_all <- monthly_avg %>%
 fac <- max(elec_long$Energy, na.rm = TRUE) / max(monthly_avg_all$avg_temp, na.rm = TRUE)
 ```
 
-### Temperature Analysis
-
-Analysis of water temperature data from the Dauphin Island buoy (2022–2024) reveals seasonal patterns, notably months exceeding 85 °F.
-
-#### Table: Monthly Average Water Temperatures (°F) at Dauphin Island (2022–2024)
-
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
-temp_summary_table <- monthly_avg %>%
-  select(year, month_label, avg_temp) %>%
-  mutate(avg_temp = round(avg_temp, 1)) %>%
-  pivot_wider(names_from = year, values_from = avg_temp) %>%
-  arrange(match(month_label, month.abb))
 
-knitr::kable(temp_summary_table,
-             col.names = c("Month", "2022 Avg Temp (°F)", "2023 Avg Temp (°F)", "2024 Avg Temp (°F)"),
-             align = 'c')
+palette <- c("#E69F00", "#56B4E9", "#009E73")
+
+ggplot(monthly_avg, aes(
+  x        = month_label,
+  y        = avg_temp,
+  group    = factor(year),
+  colour   = factor(year),
+  linetype = factor(year)
+)) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  geom_hline(yintercept = 85, linetype = "dashed", colour = "grey40") +
+  scale_colour_manual(
+    name   = "Year",
+    values = palette
+  ) +
+  scale_linetype_manual(
+    name   = "Year",
+    values = c("solid", "dashed", "dotdash")
+  ) +
+  labs(x = "Month", y = "Average Temperature (°F)"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "bottom"
+  )
+
 ```
 
-Figure: Monthly Average Temperature by Year with 85 °F Threshold
+**Figure 1: Average Monthly Sea-Surface Temperature (2022–2024)**\
+This plot illustrates the monthly average sea-surface temperatures recorded at Dauphin Island, Alabama, from 2022 through 2024. Notably, temperatures exceeded the operational threshold of 85 °F primarily in the months of July and August across multiple years, highlighting potential periods when power plant capacity may need to be reduced.
+
+### Predicted Future Temperature Trends
+
+To assess future risks, a linear model was utilized to predict temperature trends based on historical data. This model accounts for interactions between year and month.
 
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
 
-ggplot(monthly_avg, aes(month_label, avg_temp, group = factor(year))) +
-  geom_line(aes(color = factor(year)), size = 1) +
-  geom_point(aes(color = factor(year)), size = 2) +
-  geom_text(data = filter(monthly_avg, avg_temp > 85),
-            aes(label = month_label), vjust = -1, color = "red", fontface = "bold", size = 2.5) +
-  geom_hline(yintercept = 85, linetype = "dashed", color = "grey40") +
-  facet_wrap(~ year) +
-  labs(x = "Month", y = "Average Temperature (°F)", color = "Year") +
+library(dplyr)
+
+monthly_avg <- monthly_avg %>%
+  mutate(month_label = factor(month_label, levels = month.abb))
+
+mod <- lm(avg_temp ~ year * month_label, data = monthly_avg)
+
+future_years  <- seq(max(monthly_avg$year) + 1, by = 1, length.out = 5)
+future_months <- levels(monthly_avg$month_label)
+new_data <- expand.grid(
+  year        = future_years,
+  month_label = future_months
+)
+
+new_data$pred_avg_temp <- predict(mod, newdata = new_data)
+
+new_data <- new_data %>%
+  mutate(month_label = factor(month_label, levels = month.abb))
+
+cb5 <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2")
+
+ggplot(new_data, aes(x = month_label, y = pred_avg_temp, group  = factor(year), colour = factor(year)
+)) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  scale_colour_manual(
+    name   = "Year",
+    values = cb5
+  ) +
+  labs(x = "Month", y = "Predicted Avg Temp (°F)"
+  ) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
-        legend.position = "bottom")
+    legend.position = "bottom",
+    legend.title = element_text(face = "bold")
+  )
 
 ```
 
-## Electricity Usage Forecast (2024)
+**Figure 2: Predicted Average Monthly Temperatures (2025–2029)**\
+This projection uses historical temperature trends from 2022–2024 to predict monthly average temperatures for the next five years (2025–2029). The forecasts indicate continued summertime peaks exceeding 85 °F, suggesting potential operational challenges in future years.
 
-The 2024 forecast for “Net Energy For Load” in SERC-SE shows peaks in mid-summer.
+### Electricity Usage Forecast (2024)
 
-### Table: Forecasted Net Energy For Load (GWh) by Month for SERC-SE (2024)
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-
-elec_summary_table <- elec_long %>%
-  select(Month, Energy) %>%
-  mutate(Energy = round(Energy, 0))
-
-knitr::kable(elec_summary_table,
-             col.names = c("Month", "Energy (GWh)"),
-             align = 'c')
-
-```
-
-Figure: Forecasted Net Energy for Load by Month (2024)
+The 2024 electricity usage forecast for the SERC-SE region indicates significant peaks in energy demand during the summer months, aligning with the observed temperature peaks.
 
 ```{r}
 #| echo: false
@@ -201,44 +205,12 @@ ggplot(elec_long, aes(x = Month, y = Energy, group = 1)) +
 
 ```
 
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
+**Figure 3: Forecasted Net Energy For Load (2024)**\
+This graph depicts the forecasted monthly electricity usage for the SERC-SE region in 2024. Energy demand is highest during summer months, reflecting increased cooling demands associated with higher temperatures.
 
-ggplot(elec_long, aes(x = Month, y = Energy, group = 1)) +
-  geom_line(size = 1, color = "dodgerblue") +
-  geom_point(size = 2, color = "dodgerblue") +
-  labs(x = "Month", y = "Energy (GWh)") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
-        legend.position = "none")
+### Relationship Between Temperature and Electricity Usage
 
-```
-
-## Relationship Between Temperature and Electricity Usage
-
-Overlaying the 2022–2024 avg temperatures with the 2024 energy forecast shows coincident peaks.
-
-### Table: Comparison of Avg Temp (°F, 2022–24 Avg) & Forecasted Energy (GWh, 2024)
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-
-combined_summary_table <- left_join(
-  monthly_avg_all %>% select(Month, avg_temp) %>% mutate(avg_temp = round(avg_temp,1)),
-  elec_long %>% select(Month, Energy) %>% mutate(Energy = round(Energy,0)),
-  by = "Month"
-) %>%
-  rename(`Avg Temp (°F)` = avg_temp, `Energy (GWh)` = Energy)
-
-knitr::kable(combined_summary_table, align = 'c')
-
-```
-
-Figure: Monthly Forecasted Energy & Avg Temperature with 85 °F Threshold
+A combined analysis of historical temperature data (2022–2024 averages) and the 2024 electricity demand forecast reveals a correlation between elevated sea-surface temperatures and increased electricity usage.
 
 ```{r}
 #| echo: false
@@ -246,38 +218,64 @@ Figure: Monthly Forecasted Energy & Avg Temperature with 85 °F Threshold
 #| warning: false
 
 ggplot() +
-  geom_line(data = elec_long, aes(x = Month, y = Energy, group = 1),
-            colour = "dodgerblue", size = 1) +
-  geom_point(data = elec_long, aes(x = Month, y = Energy),
-             colour = "dodgerblue", size = 2) +
-  geom_line(data = monthly_avg_all, aes(x = Month, y = avg_temp * fac, group = 2),
-            colour = "black", linetype = "dashed", size = 1) +
-  geom_point(data = monthly_avg_all, aes(x = Month, y = avg_temp * fac),
-             colour = "black", size = 2) +
+  geom_line(data = elec_long, aes(x = Month, y = Energy, colour = "Energy", linetype = "Energy", group = 1),
+    size = 1) +
+  geom_point(data = elec_long, aes(x = Month, y = Energy, colour = "Energy"), 
+             size = 2) +
+  geom_line(data = monthly_avg_all, aes(x = Month, y = avg_temp * fac, color = "Temperature", linetype = "Temperature", group = 1),
+    size = 1
+  ) +
+  geom_point(data = monthly_avg_all, aes(x = Month, y = avg_temp * fac, colour = "Temperature"),
+    size = 2
+  ) +
   scale_y_continuous(
-    name    = "Forecasted Energy (GWh)",
+    name     = "Forecasted Energy (GWh)",
     sec.axis = sec_axis(~ . / fac, name = "Average Temperature (°F)")
   ) +
-  geom_hline(yintercept = 85 * fac, linetype = "dashed", color = "grey40", size = 0.8) +
-  annotate("text", x = Inf, y = 85 * fac, label = "85°F threshold",
-           hjust = 1.1, vjust = -0.5, color = "grey40", size = 3) +
+  geom_hline(
+    yintercept = 85 * fac,
+    linetype = "dashed",
+    colour = "grey40",
+    size = 0.8
+  ) +
+  annotate(
+    "text",
+    x = Inf,
+    y = 85 * fac,
+    label = "85°F threshold",
+    hjust = 1.1,
+    vjust = -0.5,
+    colour = "grey40",
+    size = 3
+  ) +
+  scale_colour_manual(
+    name = "Series",
+    values = c(
+      "Energy" = "dodgerblue",
+      "Temperature" = "black"
+    )
+  ) +
+  scale_linetype_manual(
+    name = "Series",
+    values = c("Energy" = "solid", "Temperature" = "dashed")
+  ) +
   labs(x = "Month") +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1),
-        legend.position = "none")
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "bottom",
+    legend.title = element_text(face = "bold")
+  )
 
 ```
 
+**Figure 4: Overlay of Temperature and Electricity Usage**\
+This dual-axis graph overlays average monthly sea-surface temperatures from historical data with the forecasted electricity demand for 2024. It demonstrates that temperature peaks closely align with peaks in electricity demand, particularly during the summer months, emphasizing the operational implications of rising sea-surface temperatures.
+
 ## Conclusion
 
-The rising temperatures in the Gulf of Mexico consistently exceed the critical operational threshold of 85°F during peak summer months, particularly July and August. The number of days with temperatures above this limit is likely to rise further due to climate trends. Given that peak electricity usage coincides with these hotter months, operating the plant at reduced capacity presents significant risks to reliability and supply.
+The analysis indicates that rising sea-surface temperatures in the Gulf of Mexico regularly exceed the critical operational threshold of 85°F, particularly in July and August. This trend is expected to continue and potentially intensify over the next five years, increasing operational risks for the Dauphin Island power plant. The synchronization of temperature peaks with periods of high electricity demand creates additional operational challenges, potentially forcing the plant to reduce capacity during peak demand periods. Such scenarios may lead to compromised grid reliability, increased operational costs, and potential economic impacts.
 
-### Recommendations
+However, there are some limitations to this analysis. The linear regression model assumes historical trends will continue without considering sudden climatic or environmental changes and only uses the previous 3 years to predict the next 5. Additionally, the electricity demand forecast used for comparison is limited to a single year (2024) and may not accurately reflect longer-term fluctuations or future growth.
 
-Given these findings, the plant should consider:
-
--   Exploring alternative cooling technologies to maintain capacity during high-temperature months.
-
--   Investing in energy storage or supplemental energy generation capacity.
-
--   Conducting further economic impact analyses and predictive modeling under different climate scenarios.
+Short term solutions are necessary like obtaining electricity from other sources and urging residents to reduce electrical power consumption. Once some short term solutions are in order then the plant can undergo a long term solution to solve the problem of the increasing ocean temperature.

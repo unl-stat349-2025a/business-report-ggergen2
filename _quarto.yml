@@ -31,6 +31,7 @@ format:
     highlight-style: a11y
     theme: cosmo
   pdf:
+    latex-engine: xelatex
     documentclass: scrreprt
 
 

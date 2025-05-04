@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.313">
+<meta name="generator" content="quarto-1.7.29">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Evaluation of Gulf Temperature’s Effect on Power Plant - 2&nbsp; Report</title>
+<title>2&nbsp; Report – Evaluation of Gulf Temperature's Effect on Power Plant</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,10 +17,30 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -32,22 +52,29 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <link href="./references.html" rel="next">
 <link href="./executive-summary.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-9206d9c030161701b67a41faf3cec2af.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6c2e5b291ab26e63c7252d59a2fb7053.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,23 +83,30 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Report</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./report.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Report</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -80,80 +114,91 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Evaluation of Gulf Temperature’s Effect on Power Plant</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./executive-summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Executive Summary</span></a>
+  <a href="./executive-summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Executive Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./report.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Report</span></a>
+  <a href="./report.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Report</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-documentation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Documentation</span></a>
+  <a href="./data-documentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Documentation</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Drafts</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Drafts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./draft-data-doc.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Draft: Data Documentation</span></a>
+  <a href="./draft-data-doc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Draft: Data Documentation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./draft-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Draft: Results</span></a>
+  <a href="./draft-results.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Draft: Results</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./draft-intro-conclusions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Draft: Intro/Conclusions</span></a>
+  <a href="./draft-intro-conclusions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Draft: Intro/Conclusions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./draft-exec-summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Draft: Executive Summary</span></a>
+  <a href="./draft-exec-summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Draft: Executive Summary</span></span></a>
   </div>
 </li>
       </ul>
@@ -161,38 +206,29 @@ ul.task-list li input[type="checkbox"] {
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="toc-section-number">2.1</span>  Introduction</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="toc-section-number">2.2</span>  Methods</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">2.1</span> Introduction</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">2.2</span> Methods</a>
   <ul class="collapse">
-  <li><a href="#data-sources" id="toc-data-sources" class="nav-link" data-scroll-target="#data-sources"><span class="toc-section-number">2.2.1</span>  Data Sources</a></li>
-  <li><a href="#temperature-data-preparation" id="toc-temperature-data-preparation" class="nav-link" data-scroll-target="#temperature-data-preparation"><span class="toc-section-number">2.2.2</span>  Temperature Data Preparation</a></li>
-  <li><a href="#monthly-temperature-averages" id="toc-monthly-temperature-averages" class="nav-link" data-scroll-target="#monthly-temperature-averages"><span class="toc-section-number">2.2.3</span>  Monthly Temperature Averages</a></li>
-  <li><a href="#electricity-usage-data-preparation" id="toc-electricity-usage-data-preparation" class="nav-link" data-scroll-target="#electricity-usage-data-preparation"><span class="toc-section-number">2.2.4</span>  Electricity Usage Data Preparation</a></li>
-  <li><a href="#combinedplot-calculations" id="toc-combinedplot-calculations" class="nav-link" data-scroll-target="#combinedplot-calculations"><span class="toc-section-number">2.2.5</span>  Combined‐Plot Calculations</a></li>
+  <li><a href="#data-sources" id="toc-data-sources" class="nav-link" data-scroll-target="#data-sources"><span class="header-section-number">2.2.1</span> Data Sources</a></li>
+  <li><a href="#temperature-data-preparation" id="toc-temperature-data-preparation" class="nav-link" data-scroll-target="#temperature-data-preparation"><span class="header-section-number">2.2.2</span> Temperature Data Preparation</a></li>
+  <li><a href="#electricity-usage-data-preparation" id="toc-electricity-usage-data-preparation" class="nav-link" data-scroll-target="#electricity-usage-data-preparation"><span class="header-section-number">2.2.3</span> Electricity Usage Data Preparation</a></li>
+  <li><a href="#combined-data-visualization" id="toc-combined-data-visualization" class="nav-link" data-scroll-target="#combined-data-visualization"><span class="header-section-number">2.2.4</span> Combined Data Visualization</a></li>
   </ul></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="toc-section-number">2.3</span>  Results</a>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">2.3</span> Results</a>
   <ul class="collapse">
-  <li><a href="#combined-analysis-and-visualization" id="toc-combined-analysis-and-visualization" class="nav-link" data-scroll-target="#combined-analysis-and-visualization"><span class="toc-section-number">2.3.1</span>  Combined Analysis and Visualization</a></li>
-  <li><a href="#temperature-analysis" id="toc-temperature-analysis" class="nav-link" data-scroll-target="#temperature-analysis"><span class="toc-section-number">2.3.2</span>  Temperature Analysis</a></li>
+  <li><a href="#temperature-analysis" id="toc-temperature-analysis" class="nav-link" data-scroll-target="#temperature-analysis"><span class="header-section-number">2.3.1</span> Temperature Analysis</a></li>
+  <li><a href="#predicted-future-temperature-trends" id="toc-predicted-future-temperature-trends" class="nav-link" data-scroll-target="#predicted-future-temperature-trends"><span class="header-section-number">2.3.2</span> Predicted Future Temperature Trends</a></li>
+  <li><a href="#electricity-usage-forecast-2024" id="toc-electricity-usage-forecast-2024" class="nav-link" data-scroll-target="#electricity-usage-forecast-2024"><span class="header-section-number">2.3.3</span> Electricity Usage Forecast (2024)</a></li>
+  <li><a href="#relationship-between-temperature-and-electricity-usage" id="toc-relationship-between-temperature-and-electricity-usage" class="nav-link" data-scroll-target="#relationship-between-temperature-and-electricity-usage"><span class="header-section-number">2.3.4</span> Relationship Between Temperature and Electricity Usage</a></li>
   </ul></li>
-  <li><a href="#electricity-usage-forecast-2024" id="toc-electricity-usage-forecast-2024" class="nav-link" data-scroll-target="#electricity-usage-forecast-2024"><span class="toc-section-number">2.4</span>  Electricity Usage Forecast (2024)</a>
-  <ul class="collapse">
-  <li><a href="#table-forecasted-net-energy-for-load-gwh-by-month-for-serc-se-2024" id="toc-table-forecasted-net-energy-for-load-gwh-by-month-for-serc-se-2024" class="nav-link" data-scroll-target="#table-forecasted-net-energy-for-load-gwh-by-month-for-serc-se-2024"><span class="toc-section-number">2.4.1</span>  Table: Forecasted Net Energy For Load (GWh) by Month for SERC-SE (2024)</a></li>
-  </ul></li>
-  <li><a href="#relationship-between-temperature-and-electricity-usage" id="toc-relationship-between-temperature-and-electricity-usage" class="nav-link" data-scroll-target="#relationship-between-temperature-and-electricity-usage"><span class="toc-section-number">2.5</span>  Relationship Between Temperature and Electricity Usage</a>
-  <ul class="collapse">
-  <li><a href="#table-comparison-of-avg-temp-f-202224-avg-forecasted-energy-gwh-2024" id="toc-table-comparison-of-avg-temp-f-202224-avg-forecasted-energy-gwh-2024" class="nav-link" data-scroll-target="#table-comparison-of-avg-temp-f-202224-avg-forecasted-energy-gwh-2024"><span class="toc-section-number">2.5.1</span>  Table: Comparison of Avg Temp (°F, 2022–24 Avg) &amp; Forecasted Energy (GWh, 2024)</a></li>
-  </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="toc-section-number">2.6</span>  Conclusion</a>
-  <ul class="collapse">
-  <li><a href="#recommendations" id="toc-recommendations" class="nav-link" data-scroll-target="#recommendations"><span class="toc-section-number">2.6.1</span>  Recommendations</a></li>
-  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">2.4</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -201,7 +237,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Report</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Report</span></h1>
 </div>
 
 
@@ -214,516 +250,529 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <section id="introduction" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">2.1</span> Introduction</h2>
-<p>Power plants generate a lot of heat and therefor need to cooled down. Many power plants rely on water to cool the equipment and maintain stable operations. However, this can have significant impacts environmentally and economically (<span class="citation" data-cites="Bergmann2024">(<a href="references.html#ref-Bergmann2024" role="doc-biblioref"><strong>Bergmann2024?</strong></a>)</span>). The power plant examined in this report is located in Dauphin Island, Alabama, and uses water from the Gulf of Mexico. At the time the plant was constructed, it was assumed the Gulf water temperature would remain below 85°F; temperatures exceeding this threshold would require the plant to run at reduced capacity. With ocean temperatures rising, it’s essential to evaluate whether the plant can operate at full capacity throughout the year. This report analyzes historical ocean temperature data alongside electricity demand forecasts to assess operational risks.</p>
-<p>Operating below full capacity poses economic and reliability concerns, especially during periods of peak electricity demand, potentially leading to shortages or increased costs.</p>
+<p>Over the past few decades, the demand for reliable electricity has increased steadily, and that trend shows no signs of slowing down. At the same time, global temperatures are rising, which puts extra pressure on power plants—especially those that use water to cool their equipment. Without effective cooling, turbines can overheat, efficiency drops, and unplanned shutdowns become more likely <span class="citation" data-cites="bergmann2024">(<a href="references.html#ref-bergmann2024" role="doc-biblioref">bergmann 2024</a>)</span>. These issues can lead to higher operating costs and potential power shortages during peak demand.</p>
+<p>This report examines a mid‐sized power plant on Dauphin Island, Alabama, where water from the Gulf of Mexico is drawn. When the plant was built, designers assumed intake water would stay below 85 °F year‐round. Recent data show that sea‐surface temperatures there occasionally exceed 85 °F—the level engineers originally considered the safe upper limit for cooling intake water. When temperatures climb above this threshold, the plant must scale back capacity to avoid overheating, which can reduce revenue and compromise grid reliability. This analysis aims to assess the operational risk of the plant having to lower production during high ocean temperature periods.</p>
 </section>
 <section id="methods" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="methods"><span class="header-section-number">2.2</span> Methods</h2>
 <section id="data-sources" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="data-sources"><span class="header-section-number">2.2.1</span> Data Sources</h3>
-<ul>
-<li><p><strong>Sea-surface Temperature (<span class="citation" data-cites="NERC">(<a href="references.html#ref-NERC" role="doc-biblioref"><strong>NERC?</strong></a>)</span>):</strong><br>
-Hourly water temperature readings were collected from a buoy near Dauphin Island for the period January 2022 through December 2024.</p></li>
-<li><p><strong>Electricity Usage Forecasts (<span class="citation" data-cites="NBCD-h">(<a href="references.html#ref-NBCD-h" role="doc-biblioref"><strong>NBCD-h?</strong></a>)</span>) :</strong><br>
-Forecasts of “Net Energy For Load” for 2024 were obtained from the North American Electric Reliability Corporation, focusing on the Southeastern U.S. (SERC-SE region).</p></li>
-</ul>
+<p>Two main datasets were used in this analysis. The first dataset consisted of hourly water temperature readings collected from a buoy located near Dauphin Island, Alabama. These temperature data covered the period from January 2022 through December 2024 and were provided by the National Data Buoy Center <span class="citation" data-cites="ndbc-h">(<a href="references.html#ref-ndbc-h" role="doc-biblioref"><span>“NDBC - Historical Meteorological Data Search - Station DPHA1,”</span> n.d.</a>)</span>. The second dataset was an electricity usage forecast for the year 2024, specifically for the Southeastern U.S. (SERC-SE region), focusing on the “Net Energy For Load,” provided by the North American Electric Reliability Corporation <span class="citation" data-cites="electric">(<a href="references.html#ref-electric" role="doc-biblioref"><span>“Electricity Supply &amp; Demand (ES&amp;d),”</span> n.d.</a>)</span> .</p>
 </section>
 <section id="temperature-data-preparation" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="temperature-data-preparation"><span class="header-section-number">2.2.2</span> Temperature Data Preparation</h3>
-<ol type="1">
-<li><p><strong>Collecting and Combining Data</strong></p>
-<ul>
-<li>Loaded three separate text files (one per year: 2022, 2023, 2024) and row-bound them into a single dataset.</li>
-</ul></li>
-<li><p><strong>Cleaning the Data</strong></p>
-<ul>
-<li>Retained only the year, month, day and raw temperature columns.<br>
-</li>
-<li>All placeholder values (temperatures ≥ 999) were removed, and April 2022 readings above 28.5 °C (instrument glitch) were excluded.</li>
-</ul></li>
-<li><p><strong>Converting Temperature and Formatting Dates</strong></p>
-<ul>
-<li>Temperatures were converted from Celsius to Fahrenheit.<br>
-</li>
-<li>A proper <code>date</code> column was created in “year-month-day” format.</li>
-</ul></li>
-</ol>
+<p>Three separate datasets for temperature, each corresponding to one year (2022, 2023, 2024), were combined into a single dataset. After combining, the dataset was cleaned to retain only relevant information, such as year, month, day, and temperature measurements. Incorrect readings, including placeholder values (temperatures equal to or above 999) and unusually high readings from April 2022 (temperatures above 28.5 °C), were removed.</p>
+<p>After cleaning, temperature values were converted from Celsius to Fahrenheit, matching the plant’s operational standards. A new date column was also created using a standardized “year-month-day” format for ease of analysis.</p>
+<p>Monthly average temperatures were then calculated by grouping daily temperature data. Each month was labeled as either “Above 85 °F” or “Below 85 °F” based on whether the average exceeded the critical threshold of 85 °F. Finally, a long-term average was computed by averaging monthly values across the entire three-year span.</p>
+<p>A linear regression model was then created using monthly average temperatures to predict future temperatures, extending the dataset five years beyond the observed period.</p>
 </section>
-<section id="monthly-temperature-averages" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="monthly-temperature-averages"><span class="header-section-number">2.2.3</span> Monthly Temperature Averages</h3>
-<ul>
-<li>Calculated the average temperature for each combination of year and month.<br>
-</li>
-<li>Each month was flagged as “Above 85 °F” or “Below 85 °F” for easy highlighting.<br>
-</li>
-<li>A three-letter month label (Jan, Feb, …) was assigned for plotting.<br>
-</li>
-<li>Then averaged those monthly values across all three years to create a long-term baseline for each calendar month.</li>
-</ul>
+<section id="electricity-usage-data-preparation" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="electricity-usage-data-preparation"><span class="header-section-number">2.2.3</span> Electricity Usage Data Preparation</h3>
+<p>Electricity forecast data for 2024 was processed separately. The data was initially loaded from a spreadsheet and filtered to include only entries for the SERC-SE region and the “Reporting Year Forecast – Net Energy For Load.”</p>
+<p>The data initially contained monthly columns for each month from January to December. These monthly columns were reshaped into a long-form dataset, creating individual rows for each month. Energy consumption values were converted to numeric format, and months were organized chronologically from January through December for clearer analysis.</p>
 </section>
-<section id="electricity-usage-data-preparation" class="level3" data-number="2.2.4">
-<h3 data-number="2.2.4" class="anchored" data-anchor-id="electricity-usage-data-preparation"><span class="header-section-number">2.2.4</span> Electricity Usage Data Preparation</h3>
-<ol type="1">
-<li><p><strong>Loading and Filtering Data</strong></p>
-<ul>
-<li>The 2024 forecast spreadsheet was read in, then filtered to only include the SERC-SE region and the “Reporting Year Forecast – Net Energy For Load” series.</li>
-</ul></li>
-<li><p><strong>Reshaping Data</strong></p>
-<ul>
-<li>The twelve monthly columns (Jan–Dec) were pivoted into long form with one row per month.<br>
-</li>
-<li>Energy values were converted to numeric and the <code>Month</code> column was ordered from January through December.</li>
-</ul></li>
-</ol>
-</section>
-<section id="combinedplot-calculations" class="level3" data-number="2.2.5">
-<h3 data-number="2.2.5" class="anchored" data-anchor-id="combinedplot-calculations"><span class="header-section-number">2.2.5</span> Combined‐Plot Calculations</h3>
-<ul>
-<li>To overlay temperature and energy on the same chart, we computed a scaling factor by dividing the maximum 2024 energy forecast by the maximum three-year average temperature. This ensured both series share a sensible dual-axis scale.</li>
-</ul>
+<section id="combined-data-visualization" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="combined-data-visualization"><span class="header-section-number">2.2.4</span> Combined Data Visualization</h3>
+<p>To visualize the relationship between water temperatures and electricity usage effectively, the data required scaling. A scaling factor was calculated by dividing the maximum forecasted energy value for 2024 by the highest average temperature recorded across the three years. This scaling enabled clear and accurate plotting of both temperature and energy data on a single graph.</p>
 </section>
 </section>
 <section id="results" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="results"><span class="header-section-number">2.3</span> Results</h2>
-<section id="combined-analysis-and-visualization" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="combined-analysis-and-visualization"><span class="header-section-number">2.3.1</span> Combined Analysis and Visualization</h3>
-<ul>
-<li><p>Average monthly temperatures across all years were calculated to identify general trends.</p></li>
-<li><p>Electricity usage and temperature data were visualized together to assess potential relationships around the 85°F threshold.</p></li>
-</ul>
-</section>
-<section id="temperature-analysis" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="temperature-analysis"><span class="header-section-number">2.3.2</span> Temperature Analysis</h3>
-<p>Analysis of water temperature data from the Dauphin Island buoy (2022–2024) reveals seasonal patterns, notably months exceeding 85 °F.</p>
-<section id="table-monthly-average-water-temperatures-f-at-dauphin-island-20222024" class="level4" data-number="2.3.2.1">
-<h4 data-number="2.3.2.1" class="anchored" data-anchor-id="table-monthly-average-water-temperatures-f-at-dauphin-island-20222024"><span class="header-section-number">2.3.2.1</span> Table: Monthly Average Water Temperatures (°F) at Dauphin Island (2022–2024)</h4>
+<section id="temperature-analysis" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="temperature-analysis"><span class="header-section-number">2.3.1</span> Temperature Analysis</h3>
+<p>Analysis of water temperature data from the Dauphin Island buoy (2022–2024) reveals clear seasonal patterns, with temperatures frequently surpassing the critical threshold of 85 °F during the peak summer months.</p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table table-sm table-striped">
-<thead>
-<tr class="header">
-<th style="text-align: center;">Month</th>
-<th style="text-align: center;">2022 Avg Temp (°F)</th>
-<th style="text-align: center;">2023 Avg Temp (°F)</th>
-<th style="text-align: center;">2024 Avg Temp (°F)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">Jan</td>
-<td style="text-align: center;">54.2</td>
-<td style="text-align: center;">58.5</td>
-<td style="text-align: center;">54.3</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Feb</td>
-<td style="text-align: center;">58.4</td>
-<td style="text-align: center;">59.2</td>
-<td style="text-align: center;">58.9</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Mar</td>
-<td style="text-align: center;">70.0</td>
-<td style="text-align: center;">64.6</td>
-<td style="text-align: center;">64.2</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Apr</td>
-<td style="text-align: center;">81.9</td>
-<td style="text-align: center;">70.7</td>
-<td style="text-align: center;">71.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">May</td>
-<td style="text-align: center;">80.3</td>
-<td style="text-align: center;">78.3</td>
-<td style="text-align: center;">80.6</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Jun</td>
-<td style="text-align: center;">86.2</td>
-<td style="text-align: center;">83.0</td>
-<td style="text-align: center;">84.7</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Jul</td>
-<td style="text-align: center;">86.0</td>
-<td style="text-align: center;">86.6</td>
-<td style="text-align: center;">87.8</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Aug</td>
-<td style="text-align: center;">83.0</td>
-<td style="text-align: center;">89.2</td>
-<td style="text-align: center;">88.3</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Sep</td>
-<td style="text-align: center;">83.8</td>
-<td style="text-align: center;">85.7</td>
-<td style="text-align: center;">82.8</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Oct</td>
-<td style="text-align: center;">73.5</td>
-<td style="text-align: center;">75.2</td>
-<td style="text-align: center;">75.7</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Nov</td>
-<td style="text-align: center;">62.3</td>
-<td style="text-align: center;">64.9</td>
-<td style="text-align: center;">71.3</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Dec</td>
-<td style="text-align: center;">58.2</td>
-<td style="text-align: center;">58.2</td>
-<td style="text-align: center;">58.5</td>
-</tr>
-</tbody>
-</table>
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<p>Figure: Monthly Average Temperature by Year with 85 °F Threshold</p>
+</div>
+<p><strong>Figure 1: Average Monthly Sea-Surface Temperature (2022–2024)</strong><br>
+This plot illustrates the monthly average sea-surface temperatures recorded at Dauphin Island, Alabama, from 2022 through 2024. Notably, temperatures exceeded the operational threshold of 85 °F primarily in the months of July and August across multiple years, highlighting potential periods when power plant capacity may need to be reduced.</p>
+</section>
+<section id="predicted-future-temperature-trends" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="predicted-future-temperature-trends"><span class="header-section-number">2.3.2</span> Predicted Future Temperature Trends</h3>
+<p>To assess future risks, a linear model was utilized to predict temperature trends based on historical data. This model accounts for interactions between year and month.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="report_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
+</div>
+<p><strong>Figure 2: Predicted Average Monthly Temperatures (2025–2029)</strong><br>
+This projection uses historical temperature trends from 2022–2024 to predict monthly average temperatures for the next five years (2025–2029). The forecasts indicate continued summertime peaks exceeding 85 °F, suggesting potential operational challenges in future years.</p>
 </section>
-</section>
-</section>
-<section id="electricity-usage-forecast-2024" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="electricity-usage-forecast-2024"><span class="header-section-number">2.4</span> Electricity Usage Forecast (2024)</h2>
-<p>The 2024 forecast for “Net Energy For Load” in SERC-SE shows peaks in mid-summer.</p>
-<section id="table-forecasted-net-energy-for-load-gwh-by-month-for-serc-se-2024" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="table-forecasted-net-energy-for-load-gwh-by-month-for-serc-se-2024"><span class="header-section-number">2.4.1</span> Table: Forecasted Net Energy For Load (GWh) by Month for SERC-SE (2024)</h3>
+<section id="electricity-usage-forecast-2024" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="electricity-usage-forecast-2024"><span class="header-section-number">2.3.3</span> Electricity Usage Forecast (2024)</h3>
+<p>The 2024 electricity usage forecast for the SERC-SE region indicates significant peaks in energy demand during the summer months, aligning with the observed temperature peaks.</p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table table-sm table-striped">
-<thead>
-<tr class="header">
-<th style="text-align: center;">Month</th>
-<th style="text-align: center;">Energy (GWh)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">Jan</td>
-<td style="text-align: center;">20928</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Feb</td>
-<td style="text-align: center;">18190</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Mar</td>
-<td style="text-align: center;">17563</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Apr</td>
-<td style="text-align: center;">16515</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">May</td>
-<td style="text-align: center;">19353</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Jun</td>
-<td style="text-align: center;">21785</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Jul</td>
-<td style="text-align: center;">24007</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Aug</td>
-<td style="text-align: center;">23694</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Sep</td>
-<td style="text-align: center;">20023</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Oct</td>
-<td style="text-align: center;">17945</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Nov</td>
-<td style="text-align: center;">17883</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Dec</td>
-<td style="text-align: center;">20201</td>
-</tr>
-</tbody>
-</table>
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<p>Figure: Forecasted Net Energy for Load by Month (2024)</p>
+</div>
+<p><strong>Figure 3: Forecasted Net Energy For Load (2024)</strong><br>
+This graph depicts the forecasted monthly electricity usage for the SERC-SE region in 2024. Energy demand is highest during summer months, reflecting increased cooling demands associated with higher temperatures.</p>
+</section>
+<section id="relationship-between-temperature-and-electricity-usage" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="relationship-between-temperature-and-electricity-usage"><span class="header-section-number">2.3.4</span> Relationship Between Temperature and Electricity Usage</h3>
+<p>A combined analysis of historical temperature data (2022–2024 averages) and the 2024 electricity demand forecast reveals a correlation between elevated sea-surface temperatures and increased electricity usage.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="report_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="report_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
-</div>
+<p><strong>Figure 4: Overlay of Temperature and Electricity Usage</strong><br>
+This dual-axis graph overlays average monthly sea-surface temperatures from historical data with the forecasted electricity demand for 2024. It demonstrates that temperature peaks closely align with peaks in electricity demand, particularly during the summer months, emphasizing the operational implications of rising sea-surface temperatures.</p>
 </section>
 </section>
-<section id="relationship-between-temperature-and-electricity-usage" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="relationship-between-temperature-and-electricity-usage"><span class="header-section-number">2.5</span> Relationship Between Temperature and Electricity Usage</h2>
-<p>Overlaying the 2022–2024 avg temperatures with the 2024 energy forecast shows coincident peaks.</p>
-<section id="table-comparison-of-avg-temp-f-202224-avg-forecasted-energy-gwh-2024" class="level3" data-number="2.5.1">
-<h3 data-number="2.5.1" class="anchored" data-anchor-id="table-comparison-of-avg-temp-f-202224-avg-forecasted-energy-gwh-2024"><span class="header-section-number">2.5.1</span> Table: Comparison of Avg Temp (°F, 2022–24 Avg) &amp; Forecasted Energy (GWh, 2024)</h3>
-<div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped">
-<thead>
-<tr class="header">
-<th style="text-align: center;">Month</th>
-<th style="text-align: center;">Avg Temp (°F)</th>
-<th style="text-align: center;">Energy (GWh)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">Jan</td>
-<td style="text-align: center;">55.7</td>
-<td style="text-align: center;">20928</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Feb</td>
-<td style="text-align: center;">58.8</td>
-<td style="text-align: center;">18190</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Mar</td>
-<td style="text-align: center;">66.3</td>
-<td style="text-align: center;">17563</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Apr</td>
-<td style="text-align: center;">74.5</td>
-<td style="text-align: center;">16515</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">May</td>
-<td style="text-align: center;">79.7</td>
-<td style="text-align: center;">19353</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Jun</td>
-<td style="text-align: center;">84.6</td>
-<td style="text-align: center;">21785</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Jul</td>
-<td style="text-align: center;">86.8</td>
-<td style="text-align: center;">24007</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Aug</td>
-<td style="text-align: center;">86.8</td>
-<td style="text-align: center;">23694</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Sep</td>
-<td style="text-align: center;">84.1</td>
-<td style="text-align: center;">20023</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Oct</td>
-<td style="text-align: center;">74.8</td>
-<td style="text-align: center;">17945</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Nov</td>
-<td style="text-align: center;">66.2</td>
-<td style="text-align: center;">17883</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Dec</td>
-<td style="text-align: center;">58.3</td>
-<td style="text-align: center;">20201</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>Figure: Monthly Forecasted Energy &amp; Avg Temperature with 85 °F Threshold</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="report_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-</section>
-<section id="conclusion" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">2.6</span> Conclusion</h2>
-<p>The rising temperatures in the Gulf of Mexico consistently exceed the critical operational threshold of 85°F during peak summer months, particularly July and August. The number of days with temperatures above this limit is likely to rise further due to climate trends. Given that peak electricity usage coincides with these hotter months, operating the plant at reduced capacity presents significant risks to reliability and supply.</p>
-<section id="recommendations" class="level3" data-number="2.6.1">
-<h3 data-number="2.6.1" class="anchored" data-anchor-id="recommendations"><span class="header-section-number">2.6.1</span> Recommendations</h3>
-<p>Given these findings, the plant should consider:</p>
-<ul>
-<li><p>Exploring alternative cooling technologies to maintain capacity during high-temperature months.</p></li>
-<li><p>Investing in energy storage or supplemental energy generation capacity.</p></li>
-<li><p>Conducting further economic impact analyses and predictive modeling under different climate scenarios.</p></li>
-</ul>
+<section id="conclusion" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">2.4</span> Conclusion</h2>
+<p>The analysis indicates that rising sea-surface temperatures in the Gulf of Mexico regularly exceed the critical operational threshold of 85°F, particularly in July and August. This trend is expected to continue and potentially intensify over the next five years, increasing operational risks for the Dauphin Island power plant. The synchronization of temperature peaks with periods of high electricity demand creates additional operational challenges, potentially forcing the plant to reduce capacity during peak demand periods. Such scenarios may lead to compromised grid reliability, increased operational costs, and potential economic impacts.</p>
+<p>However, there are some limitations to this analysis. The linear regression model assumes historical trends will continue without considering sudden climatic or environmental changes. Additionally, the electricity demand forecast used for comparison is limited to a single year (2024) and may not accurately reflect longer-term fluctuations or future growth.</p>
+<p>Some short term solutions are necessary like obtaining electricity from other sources and urging residents to reduce electrical power consumption. Once some short term solutions are in order then the plant can undergo a long term solution to solve the problem of the increasing ocean temperature.</p>
 
 
-</section>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-bergmann2024" class="csl-entry" role="listitem">
+bergmann. 2024. <span>“How It Works: Water for Power Plant Cooling.”</span> <a href="https://www.starcoolingtowers.com/how-it-works-water-for-power-plant-cooling/">https://www.starcoolingtowers.com/how-it-works-water-for-power-plant-cooling/</a>.
+</div>
+<div id="ref-electric" class="csl-entry" role="listitem">
+<span>“Electricity Supply &amp; Demand (ES&amp;d).”</span> n.d. <a href="https://www.nerc.com/pa/RAPA/ESD/Pages/default.aspx">https://www.nerc.com/pa/RAPA/ESD/Pages/default.aspx</a>.
+</div>
+<div id="ref-ndbc-h" class="csl-entry" role="listitem">
+<span>“NDBC - Historical Meteorological Data Search - Station DPHA1.”</span> n.d. <a href="https://www.ndbc.noaa.gov/histsearch.php?station=dpha1&amp;year=2024&amp;f1=wtmp&amp;t1a=gt&amp;v1a=0&amp;t1b=&amp;v1b=&amp;c1=&amp;f2=&amp;t2a=&amp;v2a=&amp;t2b=&amp;v2b=&amp;c2=&amp;f3=&amp;t3a=&amp;v3a=&amp;t3b=&amp;v3b=">https://www.ndbc.noaa.gov/histsearch.php?station=dpha1&amp;year=2024&amp;f1=wtmp&amp;t1a=gt&amp;v1a=0&amp;t1b=&amp;v1b=&amp;c1=&amp;f2=&amp;t2a=&amp;v2a=&amp;t2b=&amp;v2b=&amp;c2=&amp;f3=&amp;t3a=&amp;v3a=&amp;t3b=&amp;v3b=</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
-    }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-  function tippyHover(el, contentFn) {
-    const config = {
-      allowHTML: true,
-      content: contentFn,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start'
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      return note.innerHTML;
-    });
-  }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
-    } else {
-      return undefined;
+      return false;
     }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
       });
     }
-  }
-});
-</script>
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./executive-summary.html" class="pagination-link">
+      <a href="./executive-summary.html" class="pagination-link" aria-label="Executive Summary">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Executive Summary</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link">
+      <a href="./references.html" class="pagination-link" aria-label="References">
         <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -731,9 +780,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Copyright 2025, Grey Gergen</div>   
+    <div class="nav-footer-left">
+<p>Copyright 2025, Grey Gergen</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
   </div>
 </footer>
+
 
 
 
